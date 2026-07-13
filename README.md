@@ -51,11 +51,9 @@ print(results)
 
 ## 📖 Reference
 
-This package uses internal parameter tables based on the **IDEFICS study**, a European cohort focused on childhood obesity and metabolic health:
+This package uses internal parameter tables based on the **IDEFICS study**, a European cohort focused on childhood obesity and metabolic health, and **Biomarkers4Pediatrics**,  an international multicohort pediatric biomarker collaboration:
 
 -  Ahrens, W., Moreno, L. A., Mårild, S., Molnár, D., Siani, A., De Henauw, S., Böhmann, J., Günther, K., Hadjigeorgiou, C., Iacoviello, L., Lissner, L., Veidebaum, T., Pohlabeln, H. & Pigeot, I. on behalf of the IDEFICS consortium (2014). [Metabolic syndrome in young children: definitions and results of the IDEFICS study.](https://doi.org/10.1038/ijo.2014.130) *International Journal of Obesity*, 38 (Suppl 2), S4–S14.
-
-and **Biomarkers4Pediatrics**,  an international multicohort pediatric biomarker collaboration:
 
 - [http://www.biomarkers4pediatrics.eu/](https://www.bips-institut.de/en/biomarkers4pediatrics.html) 
 
