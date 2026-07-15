@@ -2,15 +2,19 @@
 % Please edit documentation in R/score_calculator.R
 \name{p_hurdle}
 \alias{p_hurdle}
-\title{Function to calculate percentiles from the hurdle model}
+\title{Percentile calculator for the hurdle model}
 \usage{
 p_hurdle(y, p1, mu, sigma, nu, tau)
 }
 \arguments{
 \item{y}{Numeric vector. Observed values of the variable to score.}
 
-\item{p1}{cutoff percentile from the logistic model}
+\item{p1}{Numeric vector. First part of the hurdle model, representing the cutoff percentile from the logistic model.}
+}
+\value{
+A numeric vector representing the calculated percentile based on the hurdle model
 }
 \description{
-Function to calculate percentiles from the hurdle model
+Calculates percentiles based on sex and age from the hurdle model.
 }
+\keyword{internal}

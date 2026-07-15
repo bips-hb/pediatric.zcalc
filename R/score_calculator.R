@@ -147,7 +147,7 @@ for (vname in var_names) {
 
 #' @title Percentile calculator for the hurdle model
 #'
-#' @description
+#' @description Calculates percentiles based on sex and age from the hurdle model.
 #'
 #' @param y Numeric vector. Observed values of the variable to score.
 #' @param p1 Numeric vector. First part of the hurdle model, representing the cutoff percentile from the logistic model.

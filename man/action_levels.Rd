@@ -2,7 +2,7 @@
 % Please edit documentation in R/score_calculator.R
 \name{action_levels}
 \alias{action_levels}
-\title{Compute IDEFICS Action Levels}
+\title{Compute Action Levels}
 \usage{
 action_levels(
   df,
@@ -27,7 +27,8 @@ action_levels(
 A list (or a modified data frame if `append = TRUE`) containing action level classifications for each domain.
 }
 \description{
-Assigns monitoring or intervention levels based on variable percentiles using standard IDEFICS thresholds.
+Assigns monitoring or intervention levels based on variable percentiles using B4P thresholds for `crp` and standard IDEFICS thresholds
+for all other variables.
 }
 \details{
 Action levels are derived using `cut()` on percentile values. For example, a value > 95th percentile maps to `"action"`.

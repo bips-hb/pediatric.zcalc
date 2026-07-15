@@ -2,7 +2,7 @@
 % Please edit documentation in R/score_calculator.R
 \name{ScoreCalc}
 \alias{ScoreCalc}
-\title{Compute IDEFICS Scores for Multiple Variables}
+\title{Compute IDEFICS and B4P Scores for Multiple Variables}
 \usage{
 ScoreCalc(
   df,
@@ -12,7 +12,7 @@ ScoreCalc(
 }
 \arguments{
 \item{df}{A data frame with columns: `sex`, `age`, `height`, and observed values for any of the supported variables:
-`bmi`, `glu`, `hdl`, `height`, `homa`, `insu`, `trg`, `waist`, `sbp`, `dbp`. Values for `height` are only required for `sbp` and `dbp`.}
+`bmi`, `glu`, `hdl`, `height`, `homa`, `insu`, `trg`, `waist`, `sbp`, `dbp`, `crp`. Values for `height` are only required for `sbp` and `dbp`.}
 
 \item{return_input}{Logical. If `TRUE`, includes original input columns in the result. Defaults to `FALSE`.}
 
@@ -30,6 +30,26 @@ The function iteratively applies `get_scores()` to each recognized variable in t
 If `"MetS"` is requested, a Metabolic Syndrome score is computed and optionally transformed to percentiles/z-scores.
 }
 \examples{
+df <- data.frame(
+  sex = c("f", "m"),
+  age = c(8, 15),
+  height = c(120, 125),
+  waist = c(55, 60),
+  homa = c(1.2, 1.4),
+  sbp = c(100, 105),
+  dbp = c(65, 70),
+  trg = c(0.9, 1.0),
+  crp = c(6, 2),
+  trg = c(0.9, 1.0),
+  hdl = c(1.1, 1.0)
+  )
+
+df <- data.frame(
+  sex = c("f", "m"),
+  age = c(15, 7),
+  crp = c(6, 2)
+  )
+
 ScoreCalc(df, return_values = c("percentile", "action"))
 
 }
