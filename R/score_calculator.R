@@ -1,6 +1,6 @@
 #' @import gamlss.dist
 
-utils::globalVariables(c("mu", "sigma", "nu", "tau"))
+utils::globalVariables(c("mu", "sigma", "nu", "tau", "cutoffp1"))
 
 #devtools::use_data(diamonds, overwrite = TRUE)
 internal_env <- new.env()
@@ -287,7 +287,7 @@ get_scores <- function(variable="waist", sex=c("f","m"), age=6:5, height=NULL, v
 #' @return A numeric vector representing the calculated MetS score for each row in the input data.
 #'
 #' @details The MetS score is computed as:\cr
-#' `waist_z + homa_z + 0.5 × (sbp_z + dbp_z + trg_z - hdl_z)`
+#' `waist_z + homa_z + 0.5 * (sbp_z + dbp_z + trg_z - hdl_z)`
 #'
 #' @examples
 #' df <- data.frame(

@@ -227,3 +227,23 @@
 #'
 #' @format A data frames containing parameters for each variable and sex group.
 #' @keywords internal
+"par_crp_girls"
+#' Internal parameter tables used by the scoring system
+#'
+#' These datasets provide the distribution parameters (e.g., mu, sigma, nu, tau) used internally
+#' for score calculation across different variables and sex categories in the IDEFICS study.
+#'
+#' Not intended for direct use by end users.
+#'
+#' @format A data frames containing parameters for each variable and sex group.
+#' @keywords internal
+"par_crp_boys"
+#' Internal parameter tables used by the scoring system
+#'
+#' These datasets provide the distribution parameters (e.g., mu, sigma, nu, tau) used internally
+#' for score calculation across different variables and sex categories in the IDEFICS study.
+#'
+#' Not intended for direct use by end users.
+#'
+#' @format A data frames containing parameters for each variable and sex group.
+#' @keywords internal
