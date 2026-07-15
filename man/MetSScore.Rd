@@ -18,7 +18,7 @@ Computes a composite MetS score from standardized z-scores of metabolic indicato
 }
 \details{
 The MetS score is computed as:\cr
-`waist_z + homa_z + 0.5 × (sbp_z + dbp_z + trg_z - hdl_z)`
+`waist_z + homa_z + 0.5 * (sbp_z + dbp_z + trg_z - hdl_z)`
 }
 \examples{
 df <- data.frame(
