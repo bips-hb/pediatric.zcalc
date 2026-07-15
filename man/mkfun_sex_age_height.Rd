@@ -15,7 +15,7 @@ mkfun_sex_age_height(vname, param)
 A function with signature `(sex, age, height)` returning interpolated values.
 }
 \description{
-Constructs a closure for interpolating values that depend on sex, age, and height.
+Constructs a closure for interpolating values that depend on sex, age, and height
 Chooses appropriate internal spline function based on `vname` and `param`.
 }
 \keyword{internal}

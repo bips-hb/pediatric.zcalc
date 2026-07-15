@@ -147,7 +147,7 @@ for (vname in var_names) {
 
 #' @title Percentile calculator for the hurdle model
 #'
-#' @description
+#' @description Calculates percentiles based on sex and age from the hurdle model.
 #'
 #' @param y Numeric vector. Observed values of the variable to score.
 #' @param p1 Numeric vector. First part of the hurdle model, representing the cutoff percentile from the logistic model.
@@ -450,12 +450,6 @@ action_levels <- function(df, lvl_name=c("none","monit","action"), perc_level=c(
 #'   crp = c(6, 2),
 #'   trg = c(0.9, 1.0),
 #'   hdl = c(1.1, 1.0)
-#'   )
-#'
-#' df <- data.frame(
-#'   sex = c("f", "m"),
-#'   age = c(15, 7),
-#'   crp = c(6, 2)
 #'   )
 #'
 #' ScoreCalc(df, return_values = c("percentile", "action"))

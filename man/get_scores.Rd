@@ -2,7 +2,7 @@
 % Please edit documentation in R/score_calculator.R
 \name{get_scores}
 \alias{get_scores}
-\title{Calculate IDEFICS Scores for Children}
+\title{Calculate Scores for Children and Young Adults}
 \usage{
 get_scores(
   variable = "waist",
@@ -14,11 +14,11 @@ get_scores(
 )
 }
 \arguments{
-\item{variable}{Character. The variable to assess. Must be one of the supported variables ("waist", "bmi", "hdl", "sbp", "dbp", "trg", "homa", "glu", "height" or "insu").}
+\item{variable}{Character. The variable to assess. Must be one of the supported variables ("waist", "bmi", "hdl", "sbp", "dbp", "trg", "homa", "glu", "height","insu", or "crp").}
 
 \item{sex}{Character vector. Same length as `age`, `height`, and `values`. Accepts "f" for female or "m" for male.}
 
-\item{age}{Numeric vector. Ages of the children in years.}
+\item{age}{Numeric vector. Ages of the children in years. Must be between 1 and 22 for `crp`, and between 2 and 11 otherwise.}
 
 \item{height}{Numeric vector or NULL. Required for height-dependent models (`sbp` and `dbp`). Defaults to NULL.}
 
@@ -30,10 +30,16 @@ get_scores(
 A named list containing the requested scores. Each element is a numeric vector of the same length as `values`.
 }
 \description{
-Computes age-, sex- and (for `sbp` and `dbp`) height-specific percentiles or z-scores for anthropometric and metabolic variables
-using IDEFICS study reference data.
+Computes age-, sex- and (for `sbp` and `dbp`) height-specific percentiles or z-scores for anthropometric and metabolic variable
+using IDEFICS study reference data and Biomarkers4Pediatrics collaboration (for `crp`).
 }
 \examples{
+get_scores(
+  variable = "crp",
+  sex = c("f","f"),
+  age = c(3, 12),
+  values = c(4, 0.5)
+  )
 
 get_scores(
   variable="dbp",
@@ -41,6 +47,6 @@ get_scores(
   age=c(5,5),
   height=c(120,110),
   values=c(70,60)
-)
+  )
 
 }
