@@ -454,6 +454,7 @@ action_levels <- function(df, lvl_name=c("none","monit","action"), perc_level=c(
 #'
 #' ScoreCalc(df, return_values = c("percentile", "action"))
 #'
+#'
 #' @export
 ScoreCalc <- function(df, return_input = F, return_values=c("percentile","z.score", "MetS", "action")) {
 
