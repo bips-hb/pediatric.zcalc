@@ -161,7 +161,7 @@ for (vname in var_names) {
 #' @details
 #' Only the generalized beta type 1 (GB1) distribution is supported, as this is the distribution required by `crp`.
 #'
-#' @keywords
+#' @keywords internal
 p_hurdle <- function(y, p1, mu, sigma, nu, tau) {
 
   p <- p1 + (1 - p1) * pGB1(y,

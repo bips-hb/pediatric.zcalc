@@ -28,4 +28,4 @@ Computes percentiles using a hurdle model by combining the probability from the 
 \details{
 Only the generalized beta type 1 (GB1) distribution is supported, as this is the distribution required by `crp`.
 }
-\keyword{}
+\keyword{internal}
