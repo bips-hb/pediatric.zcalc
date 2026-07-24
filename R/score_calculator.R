@@ -145,15 +145,23 @@ for (vname in var_names) {
 #approx_param_functions$bmi_sigma(c("f","m"),c(5,5))
 
 
-#' @title Percentile calculator for the hurdle model
+#' @title Calculate Percentiles for the Hurdle Model
 #'
-#' @description Calculates percentiles based on sex and age from the hurdle model.
+#' @description Computes percentiles using a hurdle model by combining the probability from the first hurdle part (`p1`) with the conditional distribution of the continuous part.
 #'
 #' @param y Numeric vector. Observed values of the variable to score.
-#' @param p1 Numeric vector. First part of the hurdle model, representing the cutoff percentile from the logistic model.
+#' @param p1 Numeric vector. Probability from the first part of the hurdle model.
+#' @param mu Numeric vector. Location parameter of the continuous distribution.
+#' @param sigma Numeric vector. Scale parameter of the continuous distribution.
+#' @param nu Numeric vector. Shape parameter of the continuous distribution.
+#' @param tau Numeric vector. Tail parameter of the continuous distribution.
 #'
-#' @return A numeric vector representing the calculated percentile based on the hurdle model
-#' @keywords internal
+#' @return A numeric vector containing the calculated percentiles of the same length as `y`.
+#'
+#' @details
+#' Only the generalized beta type 1 (GB1) distribution is supported, as this is the distribution required by `crp`.
+#'
+#' @keywords
 p_hurdle <- function(y, p1, mu, sigma, nu, tau) {
 
   p <- p1 + (1 - p1) * pGB1(y,
@@ -166,8 +174,6 @@ p_hurdle <- function(y, p1, mu, sigma, nu, tau) {
 
   p
 }
-
-
 
 
 
