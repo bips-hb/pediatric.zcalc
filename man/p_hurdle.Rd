@@ -2,19 +2,27 @@
 % Please edit documentation in R/score_calculator.R
 \name{p_hurdle}
 \alias{p_hurdle}
-\title{Percentile calculator for the hurdle model}
+\title{Calculate Percentiles for the Hurdle Model}
 \usage{
 p_hurdle(y, p1, mu, sigma, nu, tau)
 }
 \arguments{
 \item{y}{Numeric vector. Observed values of the variable to score.}
 
-\item{p1}{Numeric vector. First part of the hurdle model, representing the cutoff percentile from the logistic model.}
+\item{p1}{Numeric vector. Probability from the first part of the hurdle model.}
+
+\item{mu}{Numeric vector. Location parameter of the continuous distribution.}
+
+\item{sigma}{Numeric vector. Scale parameter of the continuous distribution.}
+
+\item{nu}{Numeric vector. Shape parameter of the continuous distribution.}
+
+\item{tau}{Numeric vector. Tail parameter of the continuous distribution.}
 }
 \value{
-A numeric vector representing the calculated percentile based on the hurdle model
+A numeric vector containing the calculated percentiles of the same length as `y`.
 }
 \description{
-Calculates percentiles based on sex and age from the hurdle model.
+Computes percentiles using a hurdle model by combining the probability from the first hurdle part (`p1`) with the conditional distribution of the continuous part.
 }
 \keyword{internal}
