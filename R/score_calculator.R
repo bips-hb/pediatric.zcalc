@@ -153,7 +153,7 @@ for (vname in var_names) {
 #' Only the generalized beta type 1 (GB1) distribution is supported, as this is the distribution required by `crp`.
 #' @keywords internal
 p_hurdle <- function(y, p1, mu, sigma, nu, tau) {
-  p <- p1 + (1 - p1) * pGB1(y,
+  p <- p1 + (1 - p1) * gamlss.dist::pGB1(y,
                             mu = mu,
                             sigma = sigma,
                             nu = nu,
@@ -335,21 +335,21 @@ MetSScore <- function(df) {
 #'   waist_percentile = c(0.9,0.99),
 #'   sbp_percentile = c(0.8,0.01)
 #' )
-# action_levels(df)
-#
-# df <- data.frame(
-#   sex = c("m", "m"),
-#   hdl_percentile = c(0.1,0.5),
-#   homa_percentile = c(0.4,0.9),
-#   trg_percentile = c(0.6,0.5),
-#   crp_percentile = c(0.95, 0.9),
-#   waist_percentile = c(0.9,0.99),
-#   sbp_percentile = c(0.8,0.01)
-# )
 #' action_levels(df)
 #'
+#' df <- data.frame(
+#'   #sex = c("m", "m"),
+#'   hdl_percentile = c(0.1,0.5),
+#'   homa_percentile = c(0.4,0.9),
+#'   trg_percentile = c(0.6,0.5),
+#'   crp_percentile = c(0.95, 0.9),
+#'   waist_percentile = c(0.9,0.99),
+#'   sbp_percentile = c(0.8,0.01)
+#' )
+#' action_levels(df, sex = c("m", "m"))
+#'
 #' @export
-action_levels <- function(df, lvl_name=c("none","monit","action"), perc_level=c(0.9, 0.95), append=FALSE, filter=NULL) {
+action_levels <- function(df, sex = NULL, lvl_name=c("none","monit","action"), perc_level=c(0.9, 0.95), append=FALSE, filter=NULL) {
   n <- nrow(df)
 
   rs <- list()
@@ -363,6 +363,14 @@ action_levels <- function(df, lvl_name=c("none","monit","action"), perc_level=c(
   }
 
   crp_perc_to_actlev <- function(perc, sex) {
+    if (is.null(sex)) {
+      stop("`sex` is required to calculate CRP action levels.")
+    }
+
+    if (any(!is.na(sex) & !sex %in% c("f", "m"))) {
+      stop("`sex` must contain only 'f', 'm', or NA.")
+    }
+
     cutoffs <- ifelse(sex == "m", 0.935, 0.899) # hard-coded sex-specific cutoffs
     ordered(
       ifelse(perc > cutoffs, "Elevated", "Not elevated"),
@@ -374,7 +382,7 @@ action_levels <- function(df, lvl_name=c("none","monit","action"), perc_level=c(
     rs$adiposity.action <- perc_to_actlev(df$waist_percentile)
 
   if ("crp" %in% filter || "overall" %in% filter || (is.null(filter) && !is.null(df$crp_percentile)))
-    rs$crp.action <- crp_perc_to_actlev(df$crp_percentile, df$sex)
+    rs$crp.action <- crp_perc_to_actlev(df$crp_percentile, sex)
 
   if ("blood_pressure" %in% filter || "overall" %in% filter || (is.null(filter) && !(is.null(df$dbp_percentile) && is.null(df$sbp_percentile) ))) {
     dbp.action <- perc_to_actlev(df$dbp_percentile)
@@ -405,6 +413,10 @@ action_levels <- function(df, lvl_name=c("none","monit","action"), perc_level=c(
               # which of the levels 1, 2, 3 are exceeded/reached at least 3 times
               levelcheck_123 <- apply(compare_with_123, 1, function(x) sum(x, na.rm=T)>=3)
               # return maximum level that is reached or exceeded at least three times
+              if (!any(levelcheck_123))
+                return(NA_integer_)
+              else
+               max((1:(length(perc_level)+1))[levelcheck_123]) #max(ordered(1:(length(perc_level)+1), 1:(length(perc_level)+1), lvl_name)[levelcheck_123])
  # suggestion:
  #              levs <- (1:(length(perc_level)+1))[levelcheck_123]
  #              if (length(levs) == 0) NA_integer_ else max(levs)
@@ -418,9 +430,6 @@ action_levels <- function(df, lvl_name=c("none","monit","action"), perc_level=c(
 
   return(as.data.frame(rs))
 }
-
-
-
 
 
 #' Compute IDEFICS and B4P Scores for Multiple Variables
@@ -466,6 +475,7 @@ action_levels <- function(df, lvl_name=c("none","monit","action"), perc_level=c(
 #'   hdl = c(1.1, 1.0)
 #'   )
 #' ScoreCalc(df, return_values = c("percentile", "action"))
+#' # for the 15 yer old male everything except CRP is NA (outside IDEFICS age range)
 #'
 #' @export
 ScoreCalc <- function(df, return_input = F, return_values=c("percentile","z.score", "MetS", "action")) {
@@ -521,9 +531,9 @@ ScoreCalc <- function(df, return_input = F, return_values=c("percentile","z.scor
   }
 
   if ("action" %in% return_values) {
-    score_results$sex <- df$sex  # revise: temporary fix only!
-    score_results <- action_levels(score_results, append = TRUE)
-    score_results[["sex"]] <- NULL # revise: temporary fix only!
+    #score_results$sex <- df$sex  # revise: temporary fix only!
+    score_results <- action_levels(score_results, sex = df$sex, append = TRUE)
+    #score_results[["sex"]] <- NULL # revise: temporary fix only!
   }
 
   # if input requested
@@ -531,3 +541,4 @@ ScoreCalc <- function(df, return_input = F, return_values=c("percentile","z.scor
 
   return(score_results)
 }
+
