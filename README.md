@@ -1,13 +1,13 @@
 ![R-CMD-check](https://github.com/bips-hb/IDEFICS_scalc/actions/workflows/r.yml/badge.svg)
-# 📦 IDEFICS.scalc
+# 📦 pediatric.zcalc
 
-**IDEFICS.scalc** provides functions to compute standardized percentiles, and z-scores for anthropometric and metabolic parameters in children and young adults, 
+**pediatric.zcalc** provides functions to compute individual percentile ranks and z-scores for anthropometric and metabolic parameters in children, adolescents and young adults, 
 based on age-, sex-, and height-specific reference data from the IDEFICS study and the Biomarkers4Pediatrics collaboration.
-It also supports the computation of a composite Metabolic Syndrome (MetS) score and categorizing health risk levels using action thresholds.
+It also supports the computation of a composite Metabolic Syndrome (MetS) score and associated monitoring/action levels for health monitoring.
 
 ## 🔧 Installation
 
-You can install the development version of `IDEFICS_scalc` from GitHub using:
+You can install the development version of `pediatric.zcalc` from GitHub using:
 
 ```r
 # Install devtools if not already installed
@@ -20,7 +20,7 @@ devtools::install_github("bips-hb/IDEFICS_scalc")
 ## 🚀 Example
 
 ```r
-library(IDEFICS.scalc)
+library(pediatric.zcalc)
 
 # Input: data frame with raw values
 df <- data.frame(

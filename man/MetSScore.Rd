@@ -14,11 +14,11 @@ These are expected to be numeric vectors representing z-scores.}
 A numeric vector representing the calculated MetS score for each row in the input data.
 }
 \description{
-Computes a composite MetS score from standardized z-scores of metabolic indicators.
+Computes a composite MetS score from individual z-scores of clinical metabolic biomarkers.
 }
 \details{
 The MetS score is computed as:\cr
-`waist_z + homa_z + 0.5 * (sbp_z + dbp_z + trg_z - hdl_z)`
+`waist_z + homa_z + 0.5 * (sbp_z + dbp_z) + 0.5 * (trg_z - hdl_z)`
 }
 \examples{
 df <- data.frame(
