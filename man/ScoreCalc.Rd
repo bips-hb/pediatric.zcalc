@@ -23,11 +23,11 @@ A data frame with score columns named as `<variable>_percentile`, `<variable>_z.
         Includes additional columns like `MetS` or action levels if requested.
 }
 \description{
-Applies `get_scores()` to multiple anthropometric and metabolic variables in a data frame and optionally returns MetS and action levels.
+Applies `get_scores()` to multiple clinical metabolic biomarkers in a data frame and optionally returns MetS and action levels.
 }
 \details{
-The function iteratively applies `get_scores()` to each recognized variable in the input and combines the results.
-If `"MetS"` is requested, a Metabolic Syndrome score is computed and optionally transformed to percentiles/z-scores.
+The function applies `get_scores()` to each recognized variable in the input and combines the results.
+If `"MetS"` is requested, a Metabolic Syndrome score is computed and optionally transformed to percentile ranks/z-scores.
 }
 \examples{
 df <- data.frame(

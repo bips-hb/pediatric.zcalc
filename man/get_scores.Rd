@@ -18,7 +18,7 @@ get_scores(
 
 \item{sex}{Character vector. Same length as `age`, `height`, and `values`. Accepts "f" for female or "m" for male.}
 
-\item{age}{Numeric vector. Ages of the children in years. Must be between 1 and 22 for `crp`, and between 2 and 11 otherwise.}
+\item{age}{Numeric vector. Ages of the children in years. Must be between 1 and 22.5 for `crp`, and between 2 and 11 otherwise.}
 
 \item{height}{Numeric vector or NULL. Required for height-dependent models (`sbp` and `dbp`). Defaults to NULL.}
 
@@ -30,8 +30,7 @@ get_scores(
 A named list containing the requested scores. Each element is a numeric vector of the same length as `values`.
 }
 \description{
-Computes age-, sex- and (for `sbp` and `dbp`) height-specific percentiles or z-scores for anthropometric and metabolic variable
-using IDEFICS study reference data and Biomarkers4Pediatrics collaboration (for `crp`).
+Computes age-, sex- and (for `sbp` and `dbp`) height-specific percentile ranks or z-scores for metabolic biomarkers using IDEFICS study reference data and Biomarkers4Pediatrics collaboration (for `crp`).
 }
 \examples{
 get_scores(

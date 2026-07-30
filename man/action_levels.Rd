@@ -27,12 +27,11 @@ action_levels(
 A list (or a modified data frame if `append = TRUE`) containing action level classifications for each domain.
 }
 \description{
-Assigns monitoring or intervention levels based on variable percentiles using B4P thresholds for `crp` and standard IDEFICS thresholds
-for all other variables.
+Assigns monitoring or action levels based on individual percentile ranks using standard IDEFICS thresholds.
 }
 \details{
 Action levels are derived using `cut()` on percentile values. For example, a value > 95th percentile maps to `"action"`.
-HDL is reversed (`1 - hdl_percentile`) since lower HDL values are riskier.
+HDL is reversed since low HDL values are considered unhealthy.
 }
 \examples{
 df <- data.frame(waist_percentile = c(0.85, 0.96))

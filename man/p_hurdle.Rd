@@ -2,12 +2,12 @@
 % Please edit documentation in R/score_calculator.R
 \name{p_hurdle}
 \alias{p_hurdle}
-\title{Calculate Percentiles for the Hurdle Model}
+\title{Calculate Percentile Ranks for the Hurdle Model}
 \usage{
 p_hurdle(y, p1, mu, sigma, nu, tau)
 }
 \arguments{
-\item{y}{Numeric vector. Observed values of the variable to score.}
+\item{y}{Numeric vector. Observed values of the variable to assess.}
 
 \item{p1}{Numeric vector. Probability from the first part of the hurdle model.}
 
@@ -20,12 +20,10 @@ p_hurdle(y, p1, mu, sigma, nu, tau)
 \item{tau}{Numeric vector. Tail parameter of the continuous distribution.}
 }
 \value{
-A numeric vector containing the calculated percentiles of the same length as `y`.
+A numeric vector of the same length as `y` containing the calculated individual percentile ranks.
 }
 \description{
-Computes percentiles using a hurdle model by combining the probability from the first hurdle part (`p1`) with the conditional distribution of the continuous part.
-}
-\details{
-Only the generalized beta type 1 (GB1) distribution is supported, as this is the distribution required by `crp`.
+Computes individual percentile ranks using a hurdle model described by p1, mu, sigma, nu, and tau by combining
+the probability from the first part of the hurdle model (`p1`) with the conditional distribution of the second part.
 }
 \keyword{internal}

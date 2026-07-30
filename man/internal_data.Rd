@@ -27,9 +27,9 @@
 \alias{par_trg_girls}
 \alias{par_crp_girls}
 \alias{par_crp_boys}
-\title{Internal parameter tables used by the scoring system}
+\title{Internal distribution parameter tables for percentile curve models to derive z-scores used by the scoring system}
 \format{
-A data frames containing parameters for each variable and sex group.
+A data frames containing distribution parameters for each variable and sex.
 
 An object of class \code{data.frame} with 91 rows and 5 columns.
 
@@ -128,7 +128,7 @@ par_crp_boys
 }
 \description{
 These datasets provide the distribution parameters (e.g., mu, sigma, nu, tau) used internally
-for score calculation across different variables and sex categories in the IDEFICS study.
+for score calculation across different variables and sex categories.
 }
 \details{
 Not intended for direct use by end users.
