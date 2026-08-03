@@ -317,6 +317,7 @@ MetSScore <- function(df) {
 #' @description Assigns monitoring or action levels based on individual percentile ranks using standard IDEFICS thresholds.
 #'
 #' @param df A data frame containing percentile columns such as `waist_percentile`, `sbp_percentile`, `hdl_percentile`, etc.
+#' @param sex Character vector. Same length as `age`, `height`, and `values`. Accepts "f" for female or "m" for male.
 #' @param lvl_name Character vector of level labels. Defaults to `c("none", "monit", "action")`.
 #' @param perc_level Numeric vector of two percentiles used as cutoffs. Defaults to `c(0.9, 0.95)` for 90th and 95th percentile.
 #' @param append Logical. If `TRUE`, appends action level columns to `df`. If `FALSE`, returns only the computed levels.

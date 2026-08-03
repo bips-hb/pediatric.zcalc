@@ -45,6 +45,7 @@ df <- data.frame(
   )
 
 ScoreCalc(df, return_values = c("percentile", "action"))
+# for the 15 yer old male everything except CRP is NA (outside IDEFICS age range)
 
 
 }

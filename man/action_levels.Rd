@@ -6,6 +6,7 @@
 \usage{
 action_levels(
   df,
+  sex = NULL,
   lvl_name = c("none", "monit", "action"),
   perc_level = c(0.9, 0.95),
   append = FALSE,
@@ -14,6 +15,8 @@ action_levels(
 }
 \arguments{
 \item{df}{A data frame containing percentile columns such as `waist_percentile`, `sbp_percentile`, `hdl_percentile`, etc.}
+
+\item{sex}{Character vector. Same length as `age`, `height`, and `values`. Accepts "f" for female or "m" for male.}
 
 \item{lvl_name}{Character vector of level labels. Defaults to `c("none", "monit", "action")`.}
 
@@ -37,6 +40,24 @@ HDL is reversed since low HDL values are considered unhealthy.
 df <- data.frame(waist_percentile = c(0.85, 0.96))
 action_levels(df)
 
+df <- data.frame(
+  hdl_percentile = c(0.1,0.5),
+  homa_percentile = c(0.4,0.9),
+  trg_percentile = c(0.6,0.5),
+  waist_percentile = c(0.9,0.99),
+  sbp_percentile = c(0.8,0.01)
+)
 action_levels(df)
+
+df <- data.frame(
+  #sex = c("m", "m"),
+  hdl_percentile = c(0.1,0.5),
+  homa_percentile = c(0.4,0.9),
+  trg_percentile = c(0.6,0.5),
+  crp_percentile = c(0.95, 0.9),
+  waist_percentile = c(0.9,0.99),
+  sbp_percentile = c(0.8,0.01)
+)
+action_levels(df, sex = c("m", "m"))
 
 }
