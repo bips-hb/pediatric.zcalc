@@ -30,7 +30,7 @@ get_scores(
 A named list containing the requested scores. Each element is a numeric vector of the same length as `values`.
 }
 \description{
-Computes age-, sex- and (for `sbp` and `dbp`) height-specific percentile ranks or z-scores for metabolic biomarkers using IDEFICS study reference data and Biomarkers4Pediatrics collaboration (for `crp`).
+Computes age-, sex- and (for `sbp` and `dbp`) height-specific percentile ranks or z-scores for clinical biomarkers using IDEFICS study reference data and Biomarkers4Pediatrics collaboration (for `crp`).
 }
 \examples{
 get_scores(

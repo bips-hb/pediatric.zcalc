@@ -7,7 +7,7 @@
 ScoreCalc(
   df,
   return_input = F,
-  return_values = c("percentile", "z.score", "MetS", "action")
+  return_values = c("percentile", "z.score", "MetS", "cutoff.levels")
 )
 }
 \arguments{
@@ -16,14 +16,14 @@ ScoreCalc(
 
 \item{return_input}{Logical. If `TRUE`, includes original input columns in the result. Defaults to `FALSE`.}
 
-\item{return_values}{Character vector. Specifies which scores to compute. Options include `"percentile"`, `"z.score"`, `"MetS"`, and `"action"`.}
+\item{return_values}{Character vector. Specifies which scores to compute. Options include `"percentile"`, `"z.score"`, `"MetS"`, and `"cutoff.levels"`.}
 }
 \value{
 A data frame with score columns named as `<variable>_percentile`, `<variable>_z.score`, etc.
-        Includes additional columns like `MetS` or action levels if requested.
+        Includes additional columns like `MetS` or cutoff levels if requested.
 }
 \description{
-Applies `get_scores()` to multiple clinical metabolic biomarkers in a data frame and optionally returns MetS and action levels.
+Applies `get_scores()` to multiple clinical biomarkers in a data frame and optionally returns MetS and cutoff levels.
 }
 \details{
 The function applies `get_scores()` to each recognized variable in the input and combines the results.
@@ -44,7 +44,7 @@ df <- data.frame(
   hdl = c(1.1, 1.0)
   )
 
-ScoreCalc(df, return_values = c("percentile", "action"))
+ScoreCalc(df, return_values = c("percentile", "cutoff.levels"))
 # for the 15 yer old male everything except CRP is NA (outside IDEFICS age range)
 
 

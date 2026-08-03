@@ -1,7 +1,7 @@
 ![R-CMD-check](https://github.com/bips-hb/IDEFICS_scalc/actions/workflows/r.yml/badge.svg)
 # 📦 pediatric.zcalc
 
-**pediatric.zcalc** provides functions to compute individual percentile ranks and z-scores for anthropometric and metabolic parameters in children, adolescents and young adults, 
+**pediatric.zcalc** provides functions to compute individual percentile ranks and z-scores for clinical biomarkers in children, adolescents and young adults, 
 based on age-, sex-, and height-specific reference data from the IDEFICS study and the Biomarkers4Pediatrics collaboration.
 It also supports the computation of a composite Metabolic Syndrome (MetS) score and associated monitoring/action levels for health monitoring.
 

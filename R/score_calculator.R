@@ -175,7 +175,7 @@ p_hurdle <- function(y, p1, mu, sigma, nu, tau) {
 
 #' @title Calculate Scores for Children and Young Adults
 #'
-#' @description Computes age-, sex- and (for `sbp` and `dbp`) height-specific percentile ranks or z-scores for metabolic biomarkers using IDEFICS study reference data and Biomarkers4Pediatrics collaboration (for `crp`).
+#' @description Computes age-, sex- and (for `sbp` and `dbp`) height-specific percentile ranks or z-scores for clinical biomarkers using IDEFICS study reference data and Biomarkers4Pediatrics collaboration (for `crp`).
 #'
 #' @param variable Character. The variable to assess. Must be one of the supported variables ("waist", "bmi", "hdl", "sbp", "dbp", "trg", "homa", "glu", "height","insu", or "crp").
 #' @param sex Character vector. Same length as `age`, `height`, and `values`. Accepts "f" for female or "m" for male.
@@ -280,7 +280,7 @@ get_scores <- function(variable="waist", sex=c("f","m"), age=6:5, height=NULL, v
 
 #' @title Calculate Metabolic Syndrome (MetS) Score
 #'
-#' @description Computes a composite MetS score from individual z-scores of clinical metabolic biomarkers.
+#' @description Computes a composite MetS score from individual z-scores of clinical biomarkers.
 #'
 #' @param df A data frame containing the following columns: `waist_z.score`, `homa_z.score`, `sbp_z.score`, `dbp_z.score`, `trg_z.score`, and `hdl_z.score`.
 #'           These are expected to be numeric vectors representing z-scores.
@@ -369,7 +369,7 @@ action_levels <- function(df, sex = NULL, lvl_name=c("none","monit","action"), p
 
   crp_perc_to_actlev <- function(perc, sex) {
     if (is.null(sex)) {
-      stop("`sex` is required to calculate CRP action levels.")
+      stop("`sex` is required to calculate CRP cutoff levels.")
     }
 
     if (any(!is.na(sex) & !sex %in% c("f", "m"))) {
@@ -384,32 +384,32 @@ action_levels <- function(df, sex = NULL, lvl_name=c("none","monit","action"), p
   }
 
   if ("adiposity" %in% filter || "overall" %in% filter || (is.null(filter) && !is.null(df$waist_percentile)))
-    rs$adiposity.action <- perc_to_actlev(df$waist_percentile)
+    rs$adiposity.level <- perc_to_actlev(df$waist_percentile)
 
   if ("crp" %in% filter || "overall" %in% filter || (is.null(filter) && !is.null(df$crp_percentile)))
-    rs$crp.action <- crp_perc_to_actlev(df$crp_percentile, sex)
+    rs$crp.level <- crp_perc_to_actlev(df$crp_percentile, sex)
 
   if ("blood_pressure" %in% filter || "overall" %in% filter || (is.null(filter) && !(is.null(df$dbp_percentile) && is.null(df$sbp_percentile) ))) {
-    dbp.action <- perc_to_actlev(df$dbp_percentile)
-    sbp.action <- perc_to_actlev(df$sbp_percentile)
-    rs$blood_pressure.action <- suppressWarnings(pmax(dbp.action,sbp.action, na.rm=T))
+    dbp.level <- perc_to_actlev(df$dbp_percentile)
+    sbp.level <- perc_to_actlev(df$sbp_percentile)
+    rs$blood_pressure.level <- suppressWarnings(pmax(dbp.level,sbp.level, na.rm=T))
   }
 
   if ("blood_lipids" %in% filter || "overall" %in% filter || (is.null(filter) && !(is.null(df$trg_percentile) && is.null(df$hdl_percentile) ))) {
-    trg.action <- perc_to_actlev(df$trg_percentile)
-    hdl.action <- perc_to_actlev(1-df$hdl_percentile)
-    rs$blood_lipids.action <- suppressWarnings(pmax(trg.action,hdl.action, na.rm=T))
+    trg.level <- perc_to_actlev(df$trg_percentile)
+    hdl.level <- perc_to_actlev(1-df$hdl_percentile)
+    rs$blood_lipids.level <- suppressWarnings(pmax(trg.level,hdl.level, na.rm=T))
   }
 
   if ("blood_glu_insu" %in% filter || "overall" %in% filter || (is.null(filter) && !(is.null(df$homa_percentile) && is.null(df$glu_percentile) ))) {
-    homa.action <- perc_to_actlev(df$homa_percentile)
-    glu.action <- perc_to_actlev(df$glu_percentile)
-    rs$blood_glu_insu.action <- suppressWarnings(pmax(homa.action,glu.action, na.rm=T))
+    homa.level <- perc_to_actlev(df$homa_percentile)
+    glu.level <- perc_to_actlev(df$glu_percentile)
+    rs$blood_glu_insu.level <- suppressWarnings(pmax(homa.level,glu.level, na.rm=T))
   }
 
   if ((is.null(filter) && sum( c(!is.null(df$waist_percentile), !is.null(df$dbp_percentile) || !is.null(df$sbp_percentile), !is.null(df$trg_percentile) || !is.null(df$hdl_percentile), !is.null(df$homa_percentile) || !is.null(df$glu_percentile) ) ) >= 3) || "overall" %in% filter) {
-    rs$overall.action <-
-      apply(cbind(rs$adiposity.action,rs$blood_pressure.action,rs$blood_lipids.action,rs$blood_glu_insu.action), # converts also factors to integer...
+    rs$overall.level <-
+      apply(cbind(rs$adiposity.level,rs$blood_pressure.level,rs$blood_lipids.level,rs$blood_glu_insu.level), # converts also factors to integer...
             1, # apply rowwise
             function(x) {
               # is level 1 / 2 / 3 reached or exceeded?
@@ -426,10 +426,10 @@ action_levels <- function(df, sex = NULL, lvl_name=c("none","monit","action"), p
 
 
             })
-    rs$overall.action <- ordered(rs$overall.action, 1:(length(perc_level)+1), lvl_name)
+    rs$overall.level <- ordered(rs$overall.level, 1:(length(perc_level)+1), lvl_name)
   }
 
-  if (!is.null(filter)) rs <- rs[names(rs) %in% paste0(filter,".action")]
+  if (!is.null(filter)) rs <- rs[names(rs) %in% paste0(filter,".level")]
 
   if (append) rs <- cbind(df,rs)
 
@@ -440,15 +440,15 @@ action_levels <- function(df, sex = NULL, lvl_name=c("none","monit","action"), p
 
 #' @title  Compute IDEFICS and B4P Scores for Multiple Variables
 #'
-#' @description Applies `get_scores()` to multiple clinical metabolic biomarkers in a data frame and optionally returns MetS and action levels.
+#' @description Applies `get_scores()` to multiple clinical biomarkers in a data frame and optionally returns MetS and cutoff levels.
 #'
 #' @param df A data frame with columns: `sex`, `age`, `height`, and observed values for any of the supported variables:
 #'           `bmi`, `glu`, `hdl`, `height`, `homa`, `insu`, `trg`, `waist`, `sbp`, `dbp`, `crp`. Values for `height` are only required for `sbp` and `dbp`.
 #' @param return_input Logical. If `TRUE`, includes original input columns in the result. Defaults to `FALSE`.
-#' @param return_values Character vector. Specifies which scores to compute. Options include `"percentile"`, `"z.score"`, `"MetS"`, and `"action"`.
+#' @param return_values Character vector. Specifies which scores to compute. Options include `"percentile"`, `"z.score"`, `"MetS"`, and `"cutoff.levels"`.
 #'
 #' @return A data frame with score columns named as `<variable>_percentile`, `<variable>_z.score`, etc.
-#'         Includes additional columns like `MetS` or action levels if requested.
+#'         Includes additional columns like `MetS` or cutoff levels if requested.
 #'
 #' @details
 #' The function applies `get_scores()` to each recognized variable in the input and combines the results.
@@ -469,12 +469,12 @@ action_levels <- function(df, sex = NULL, lvl_name=c("none","monit","action"), p
 #'   hdl = c(1.1, 1.0)
 #'   )
 #'
-#' ScoreCalc(df, return_values = c("percentile", "action"))
+#' ScoreCalc(df, return_values = c("percentile", "cutoff.levels"))
 #' # for the 15 yer old male everything except CRP is NA (outside IDEFICS age range)
 #'
 #'
 #' @export
-ScoreCalc <- function(df, return_input = F, return_values=c("percentile","z.score", "MetS", "action")) {
+ScoreCalc <- function(df, return_input = F, return_values=c("percentile","z.score", "MetS", "cutoff.levels")) {
 
   # names of the variables to which get_scores will be applied
   vars <- c("bmi", "glu", "hdl", "height", "homa", "insu", "trg", "waist", "sbp", "dbp", "crp")
@@ -526,7 +526,7 @@ ScoreCalc <- function(df, return_input = F, return_values=c("percentile","z.scor
     )
   }
 
-  if ("action" %in% return_values) {
+  if ("cutoff.levels" %in% return_values) {
     score_results <- action_levels(score_results, sex = df$sex, append = TRUE)
   }
 
