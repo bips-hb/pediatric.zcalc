@@ -1,6 +1,6 @@
 Package: pediatric.zcalc
 Type: Package
-Title: Z-score Calculator for Clinical Parameters in Biomarkers in Children, Adolescents, and Young Adults
+Title: Z-Score Calculator for Clinical Parameters in Biomarkers in Children, Adolescents, and Young Adults
 Version: 0.1.0
 Authors@R: c(
     person(
