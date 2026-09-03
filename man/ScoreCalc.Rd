@@ -2,45 +2,48 @@
 % Please edit documentation in R/score_calculator.R
 \name{ScoreCalc}
 \alias{ScoreCalc}
-\title{Compute IDEFICS Scores for Multiple Variables}
+\title{Compute IDEFICS and B4P Scores for Multiple Variables}
 \usage{
 ScoreCalc(
   df,
   return_input = F,
-  return_values = c("percentile", "z.score", "MetS", "action")
+  return_values = c("percentile", "z.score", "MetS", "cutoff.levels")
 )
 }
 \arguments{
 \item{df}{A data frame with columns: `sex`, `age`, `height`, and observed values for any of the supported variables:
-`bmi`, `glu`, `hdl`, `height`, `homa`, `insu`, `trg`, `waist`, `sbp`, `dbp`. Values for `height` are only required for `sbp` and `dbp`.}
+`bmi`, `glu`, `hdl`, `height`, `homa`, `insu`, `trg`, `waist`, `sbp`, `dbp`, `crp`. Values for `height` are only required for `sbp` and `dbp`.}
 
 \item{return_input}{Logical. If `TRUE`, includes original input columns in the result. Defaults to `FALSE`.}
 
-\item{return_values}{Character vector. Specifies which scores to compute. Options include `"percentile"`, `"z.score"`, `"MetS"`, and `"action"`.}
+\item{return_values}{Character vector. Specifies which scores to compute. Options include `"percentile"`, `"z.score"`, `"MetS"`, and `"cutoff.levels"`.}
 }
 \value{
 A data frame with score columns named as `<variable>_percentile`, `<variable>_z.score`, etc.
-        Includes additional columns like `MetS` or action levels if requested.
+        Includes additional columns like `MetS` or cutoff levels if requested.
 }
 \description{
-Applies `get_scores()` to multiple anthropometric and metabolic variables in a data frame and optionally returns MetS and action levels.
+Applies `get_scores()` to multiple clinical biomarkers in a data frame and optionally returns MetS and cutoff levels.
 }
 \details{
-The function iteratively applies `get_scores()` to each recognized variable in the input and combines the results.
-If `"MetS"` is requested, a Metabolic Syndrome score is computed and optionally transformed to percentiles/z-scores.
+The function applies `get_scores()` to each recognized variable in the input and combines the results.
+If `"MetS"` is requested, a Metabolic Syndrome score is computed and optionally transformed to percentile ranks/z-scores.
 }
 \examples{
 df <- data.frame(
   sex = c("f", "m"),
-  age = c(6, 7),
+  age = c(8, 15),
   height = c(120, 125),
   waist = c(55, 60),
   homa = c(1.2, 1.4),
   sbp = c(100, 105),
   dbp = c(65, 70),
   trg = c(0.9, 1.0),
+  crp = c(6, 2),
   hdl = c(1.1, 1.0)
-)
-ScoreCalc(df, return_values = c("z.score", "MetS"))
+  )
+
+ScoreCalc(df, return_values = c("percentile", "cutoff.levels"))
+# for the 15 yer old male everything except CRP is NA (outside IDEFICS age range)
 
 }

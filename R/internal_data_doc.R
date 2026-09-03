@@ -1,11 +1,11 @@
-#' Internal parameter tables used by the scoring system
+#' Internal distribution parameter tables for percentile curve models to derive z-scores used by the scoring system
 #'
 #' These datasets provide the distribution parameters (e.g., mu, sigma, nu, tau) used internally
-#' for score calculation across different variables and sex categories in the IDEFICS study.
+#' for score calculation across different variables and sex categories.
 #'
 #' Not intended for direct use by end users.
 #'
-#' @format A data frames containing parameters for each variable and sex group.
+#' @format A data frame containing distribution parameters for each variable and sex.
 #'
 #' @name internal_data
 #' @docType data

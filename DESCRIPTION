@@ -1,22 +1,33 @@
-Package: IDEFICS.scalc
+Package: pediatric.zcalc
 Type: Package
-Title: Scoring Tools for Anthropometric and Metabolic Parameters in Children
+Title: Z-Score Calculator for Clinical Parameters in Biomarkers in Children, Adolescents, and Young Adults
 Version: 0.1.0
 Authors@R: c(
     person(
       "Andreas", "Mändle",
       email = "maendle@leibniz-bips.de",
       role = c("aut", "cre")
+    ),
+    person(
+      "Timm", "Intemann",
+      role = "aut"
+    ),
+    person(
+      "Zülal", "Bekerecioglu",
+      role = "aut"
     )
   )
-Description: Provides tools to compute standardized percentiles and z-scores for anthropometric
-    and metabolic parameters in children, based on age-, sex-, and height-specific reference data
-    from the IDEFICS study. Supports computation of a composite Metabolic Syndrome (MetS) score
-    and associated action levels for child health monitoring.
+Description: Provides tools to compute individual percentile ranks and z-scores for clinical biomarkers in children, adolescents and young adults, based on age-, sex-, and height-specific reference data from the IDEFICS study and the Biomarkers4Pediatrics collaboration. Supports the computation of a composite Metabolic Syndrome (MetS) score and associated monitoring/action levels for health monitoring.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
+Depends:
+    R (>= 3.5.0)
 Imports:
     gamlss.dist,
     pracma
-RoxygenNote: 7.3.2
+Config/roxygen2/version: 8.0.0
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+RoxygenNote: 7.3.3
