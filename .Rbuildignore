@@ -3,3 +3,4 @@
 ^main\.RData$
 ^underdev\.RData$
 ^\.github$
+^cran-comments\.md$
