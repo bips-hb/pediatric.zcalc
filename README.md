@@ -1,4 +1,4 @@
-![R-CMD-check](https://github.com/bips-hb/pediatric_zcalc/actions/workflows/r.yml/badge.svg)
+[![R-CMD-check](https://github.com/bips-hb/pediatric.zcalc/actions/workflows/r.yml/badge.svg)](https://github.com/bips-hb/pediatric.zcalc/actions/workflows/r.yml)
 # 📦 pediatric.zcalc
 
 **pediatric.zcalc** provides functions to compute individual percentile ranks and z-scores for clinical biomarkers in children, adolescents and young adults, 
