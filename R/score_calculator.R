@@ -453,10 +453,10 @@ action_levels <- function(df, sex = NULL, lvl_name=c("none","monit","action"), p
 #'   )
 #'
 #' ScoreCalc(df, return_values = c("percentile", "cutoff.levels"))
-#' # for the 15 yer old male everything except CRP is NA (outside IDEFICS age range)
+#' # for the 15 year old male everything except CRP is NA (outside IDEFICS age range)
 #'
 #' @export
-ScoreCalc <- function(df, return_input = F, return_values=c("percentile","z.score", "MetS", "cutoff.levels")) {
+ScoreCalc <- function(df, return_input = FALSE, return_values=c("percentile","z.score", "MetS", "cutoff.levels")) {
 
   # names of the variables to which get_scores will be applied
   vars <- c("bmi", "glu", "hdl", "height", "homa", "insu", "trg", "waist", "sbp", "dbp", "crp")

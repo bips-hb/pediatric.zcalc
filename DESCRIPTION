@@ -1,6 +1,6 @@
 Package: pediatric.zcalc
 Type: Package
-Title: Z-Score Calculator for Clinical Parameters in Biomarkers in Children, Adolescents, and Young Adults
+Title: Z-Score Calculator for Biomarkers: Childhood to Young Adulthood
 Version: 0.1.0
 Authors@R: c(
     person(
@@ -17,7 +17,7 @@ Authors@R: c(
       role = "aut"
     )
   )
-Description: Provides tools to compute individual percentile ranks and z-scores for clinical biomarkers in children, adolescents and young adults, based on age-, sex-, and height-specific reference data from the IDEFICS study and the Biomarkers4Pediatrics collaboration. Supports the computation of a composite Metabolic Syndrome (MetS) score and associated monitoring/action levels for health monitoring.
+Description: Provides tools to compute individual percentile ranks and z-scores for clinical biomarkers in children, adolescents and young adults, based on age-, sex-, and height-specific reference data from the IDEFICS (Identification and prevention of Dietary and lifestyle-induced health EFfects In Children and infantS) study and the Biomarkers4Pediatrics collaboration. Supports the computation of a composite Metabolic Syndrome (MetS) score and associated monitoring/action levels for health monitoring. For more details see Ahrens et al. (2014) <doi:10.1038/ijo.2014.130>.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

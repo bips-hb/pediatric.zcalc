@@ -14,7 +14,7 @@ You can install the development version of `pediatric.zcalc` from GitHub using:
 install.packages("devtools")
 
 # Install directly from GitHub
-devtools::install_github("bips-hb/IDEFICS_scalc")
+devtools::install_github("bips-hb/pediatric.zcalc")
 ```
 
 ## 🚀 Example

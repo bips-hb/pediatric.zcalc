@@ -6,7 +6,7 @@
 \usage{
 ScoreCalc(
   df,
-  return_input = F,
+  return_input = FALSE,
   return_values = c("percentile", "z.score", "MetS", "cutoff.levels")
 )
 }
@@ -44,6 +44,6 @@ df <- data.frame(
   )
 
 ScoreCalc(df, return_values = c("percentile", "cutoff.levels"))
-# for the 15 yer old male everything except CRP is NA (outside IDEFICS age range)
+# for the 15 year old male everything except CRP is NA (outside IDEFICS age range)
 
 }
