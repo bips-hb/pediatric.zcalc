@@ -380,19 +380,19 @@ action_levels <- function(df, sex = NULL, lvl_name=c("none","monit","action"), p
   if ("blood_pressure" %in% filter || "overall" %in% filter || (is.null(filter) && !(is.null(df$dbp_percentile) && is.null(df$sbp_percentile) ))) {
     dbp.level <- perc_to_actlev(df$dbp_percentile)
     sbp.level <- perc_to_actlev(df$sbp_percentile)
-    rs$blood_pressure.level <- suppressWarnings(pmax(dbp.level,sbp.level, na.rm=T))
+    rs$blood_pressure.level <- suppressWarnings(pmax(dbp.level,sbp.level, na.rm=TRUE))
   }
 
   if ("blood_lipids" %in% filter || "overall" %in% filter || (is.null(filter) && !(is.null(df$trg_percentile) && is.null(df$hdl_percentile) ))) {
     trg.level <- perc_to_actlev(df$trg_percentile)
     hdl.level <- perc_to_actlev(1-df$hdl_percentile)
-    rs$blood_lipids.level <- suppressWarnings(pmax(trg.level,hdl.level, na.rm=T))
+    rs$blood_lipids.level <- suppressWarnings(pmax(trg.level,hdl.level, na.rm=TRUE))
   }
 
   if ("blood_glu_insu" %in% filter || "overall" %in% filter || (is.null(filter) && !(is.null(df$homa_percentile) && is.null(df$glu_percentile) ))) {
     homa.level <- perc_to_actlev(df$homa_percentile)
     glu.level <- perc_to_actlev(df$glu_percentile)
-    rs$blood_glu_insu.level <- suppressWarnings(pmax(homa.level,glu.level, na.rm=T))
+    rs$blood_glu_insu.level <- suppressWarnings(pmax(homa.level,glu.level, na.rm=TRUE))
   }
 
   if ((is.null(filter) && sum( c(!is.null(df$waist_percentile), !is.null(df$dbp_percentile) || !is.null(df$sbp_percentile), !is.null(df$trg_percentile) || !is.null(df$hdl_percentile), !is.null(df$homa_percentile) || !is.null(df$glu_percentile) ) ) >= 3) || "overall" %in% filter) {
@@ -404,7 +404,7 @@ action_levels <- function(df, sex = NULL, lvl_name=c("none","monit","action"), p
               compare_with_123 <- sapply(x, function(lev) lev >= 1:(length(perc_level)+1))
               #rownames(compare_with_123) <- lvl_name
               # which of the levels 1, 2, 3 are exceeded/reached at least 3 times
-              levelcheck_123 <- apply(compare_with_123, 1, function(x) sum(x, na.rm=T)>=3)
+              levelcheck_123 <- apply(compare_with_123, 1, function(x) sum(x, na.rm=TRUE)>=3)
               # return maximum level that is reached or exceeded at least three times
               if (!any(levelcheck_123))
                 return(NA_integer_)

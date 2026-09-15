@@ -1,7 +1,7 @@
 Package: pediatric.zcalc
 Type: Package
 Title: Z-Score Calculator for Biomarkers: Childhood to Young Adulthood
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(
     person(
       "Andreas", "Mändle",
