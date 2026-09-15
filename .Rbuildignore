@@ -4,3 +4,4 @@
 ^underdev\.RData$
 ^\.github$
 ^cran-comments\.md$
+^CRAN-SUBMISSION$
